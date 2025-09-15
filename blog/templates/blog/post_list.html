@@ -1,0 +1,26 @@
+{% for post in page_obj %}
+<article>
+    <h1> {{ post.category|upper }}: {{ post.title|upper }} </h1>
+    <p> PRZEZ <a href="{% url 'author-posts' author=post.author.slug %}">{{ post.author }}</a> | OPUBLIKOWANY {{ post.published_at|date:"d.m.Y" }} | OPUBLIKOWANY W <a href="{% url 'category' category=post.category.slug %}">{{ post.category }}</a> | TAGGED WITH {% for tag in post.tags.all %}<a href="{% url 'tag' tag=tag.slug %}">{{ tag.name }}</a>, {% endfor %}</p>
+    <p> {{ post.text|truncatewords:39 }} </p>
+    <p><a href="{% url 'post' slug=post.slug %}"> Czytaj dalej... </a></p>
+</article>
+{% empty %}
+    <p>Brak postów do wyświetlenia.</p>
+{% endfor %}
+<div class="pagination">
+<span class="step-links">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+</span>
+</div>

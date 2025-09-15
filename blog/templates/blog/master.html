@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title> {% block title %}{% endblock %} </title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body>
+    <header>
+    <p><a href="{% url 'index' %}"><img src="{% static 'images/2706-kremowe.png' %}" alt="Automobilownia.pl" width="700"></a></p>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>A to jest footer</footer>
+</body>
+</html>

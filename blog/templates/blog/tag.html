@@ -1,0 +1,10 @@
+{% extends 'blog/master.html' %}
+
+{% block title %}
+{{ tag.name }} - Automobilownia.pl
+{% endblock %}
+
+{% block content %}
+    <h1> Tag: {{ tag.name }}</h1>
+    {% include 'blog/post_list.html' %}
+{% endblock %}
