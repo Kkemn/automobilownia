@@ -1,5 +1,6 @@
 from typing import Any
 from django.db.models.query import QuerySet
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
@@ -58,4 +59,20 @@ class TagListView(ListView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['tag'] = self.tag
+        return context
+    
+class SearchResultsView(ListView):
+    model = Post
+    template_name = 'blog/search_results.html'
+    paginate_by = 5
+
+    def get_queryset(self) -> QuerySet[Any]:
+        query = self.request.GET.get('q')
+        if query:
+            return Post.objects.filter(Q(title__icontains=query) | Q(text__icontains=query), published_at__lte=timezone.now()).order_by('-published_at')
+        return Post.objects.none()
+    
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q')
         return context

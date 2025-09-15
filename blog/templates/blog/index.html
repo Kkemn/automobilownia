@@ -5,5 +5,13 @@ Automobilownia.pl - Historia motoryzacji - wielowymiarowo
 {% endblock %}
 
 {% block content %}
-    {% include 'blog/post_list.html' %}
+  <main class="content">
+    <section class="posts">
+      {% include 'blog/post_list.html' %}
+    </section>
+
+    <aside class="sidebar">
+      {% include 'blog/aside_elements.html' %}
+    </aside>
+  </main>
 {% endblock %}

@@ -7,4 +7,5 @@ urlpatterns = [
     path('author/<slug:author>/', views.AuthorListView.as_view(), name='author-posts'),
     path('category/<slug:category>/', views.CategoryListView.as_view(), name='category'),
     path('tag/<slug:tag>', views.TagListView.as_view(), name='tag'),
+    path('search/', views.SearchResultsView.as_view(), name='search_post'),
 ]

@@ -1,18 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title> {% block title %}{% endblock %} </title>
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Notable&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  </head>
+  <body>
     <header>
-    <p><a href="{% url 'index' %}"><img src="{% static 'images/2706-kremowe.png' %}" alt="Automobilownia.pl" width="700"></a></p>
+      <h1><a class="site-title" href="{% url 'index' %}">Automobilownia.pl</a></h1>
+      <nav class="nav-bar">
+        <ul>
+            <li><a href='#'>Strona główna</a></li>
+            <li><a href='#'>O mnie</a></li>
+            <li><a href='#'>O stronie</a></li>
+            <li><a href='#'>Podziękowania i linki</a></li>
+            <li><a href='#'>Kontakt</a></li>
+            <li><a href='#'>Facebook</a></li>
+        </ul>
+      </nav>
     </header>
 
     {% block content %}
     {% endblock %}
 
     <footer>A to jest footer</footer>
-</body>
+  </body>
 </html>

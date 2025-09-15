@@ -1,0 +1,6 @@
+{% extends 'blog/master.html' %}
+
+{% block content %}
+  <h2>Wyniki wyszukiwania dla: {{ query }}</h2>
+  {% include 'blog/post_list.html' %}
+{% endblock %}
